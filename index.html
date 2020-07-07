@@ -7,10 +7,10 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
   <!-- Link to Mapbox GL JS library --> 
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
 
   <!-- Link to Mapbox GL JS css stylesheet -->  
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
 
   <!-- Add Google Fonts support -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
@@ -21,6 +21,8 @@
   <!-- Link to our custom stylesheet -->  
   <link rel="stylesheet" href="styles.css">
 
+  <script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
 </head>
 
 <body>
@@ -28,7 +30,7 @@
   <!-- Map sidebar --> 
   <div id="sidebar">
     <div>
-      <h1 class='page-title'>Explore Charlottesville</h1>
+      <h1 class='page-title'>Explore Hong Kong</h1>
       <!-- About this map button -->
       <button id="about" class='button-default'><i class="fas fa-question-circle"></i>&nbsp;About this map</button>
       <!-- Info window (populated by javascript code from the Mapbox map layers) -->
@@ -55,14 +57,24 @@
       <div id='layers-control'>
         <h3>Show/Hide Layers:</h3>
       </div>
+         
+         
+         
+    <!-- Hours -->
 
-      <!-- color change selector -->
+      <div class='session' id='sliderbar'>
+              <h2>Hour: <label id='active-hour'>12PM</label></h2>
+              <input id='slider' class='row' type='range' min='0' max='23' step='1' value='12' />
+      </div>
+
+      <!-- color change selector
       <div id='color-changer'>
         <div>
           <label>Bus Stop Color:</label>
           <div id='swatches'></div>
         </div>
       </div>
+       -->
 
       <!-- Map legend (populated by javascript code) -->
       <div id='legend'></div>
