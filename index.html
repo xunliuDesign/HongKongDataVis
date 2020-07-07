@@ -1,0 +1,89 @@
+<html>
+
+<head>
+  <title>My Mapbox GL JS Map</title>
+
+  <!-- Link to JQuery library (used for modal) -->  
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
+  <!-- Link to Mapbox GL JS library --> 
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js'></script>
+
+  <!-- Link to Mapbox GL JS css stylesheet -->  
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+
+  <!-- Add Google Fonts support -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Add FontAwesome support -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+  <!-- Link to our custom stylesheet -->  
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+  
+  <!-- Map sidebar --> 
+  <div id="sidebar">
+    <div>
+      <h1 class='page-title'>Explore Charlottesville</h1>
+      <!-- About this map button -->
+      <button id="about" class='button-default'><i class="fas fa-question-circle"></i>&nbsp;About this map</button>
+      <!-- Info window (populated by javascript code from the Mapbox map layers) -->
+      <div id='info-window'>
+        <div>
+          <div id='info-window-body'>
+            <p>Hover over a park or click on a bus stop to learn more about it.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Scrolling chapters (populated by javascript code from the Mapbox map layers) -->
+      <div id="chapters"></div>
+    </div>
+  </div>
+
+  
+  <!-- The map will be added to this div by javascript --> 
+  <div id="map-parent">
+    <div id="map"></div>
+
+    <!-- Map overlay sidebar -->
+    <div id='map-sidebar'>
+      <!-- Layers control (populated by javascript code) -->
+      <div id='layers-control'>
+        <h3>Show/Hide Layers:</h3>
+      </div>
+
+      <!-- color change selector -->
+      <div id='color-changer'>
+        <div>
+          <label>Bus Stop Color:</label>
+          <div id='swatches'></div>
+        </div>
+      </div>
+
+      <!-- Map legend (populated by javascript code) -->
+      <div id='legend'></div>
+
+      <!-- Reset Map button -->
+      <button id="reset" class='button-default'><i class="fas fa-redo"></i></i>&nbsp;Reset map</button>
+    </div>
+  </div>
+
+  <!-- A modal, hidden by default in our css, which provides info about this project when shown -->
+  <div class='modal'>
+    
+    <h2 class='modal-title'>About this project</h2>
+    
+    <div class='modal-body'><p>This is an example map of Charlottesville created in the Scripting Civic Engagement seminar at the University of Virginia (Fall 2017), taught by Andrea Hansen Phillips.</p><p>Map data courtesy of <a href='https://www.mapbox.com/studio/'>Mapbox Studio</a> and the <a href='http://www.charlottesville.org/online-services/maps-and-gis-data'>City of Charlottesville</a></p><p>For questions or to improve this map, contact <a href='mailto:ah2th@virginia.edu'>Andrea Hansen Phillips</a></p></div>
+    
+    <button class='close-button'>&times;</button>  <!-- A special "x" character (the multiply sign) used in close buttons -->  
+  </div>
+  <div id="screen"></div> <!-- Black overlay behind the modal -->
+
+</body>
+<!-- Link to our custom javascript, must be placed at the end of the index.html file -->  
+<script src="map.js"></script>
+</html>
