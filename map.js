@@ -81,7 +81,7 @@ var mapZoom = 12.25;
 
         } else {    // what shows up in the info window if you are NOT hovering over a park
 
-            $('#info-window-body').html('<p>Hover over a park or click on a bus stop to learn more about it.');
+            $('#info-window-body').html('<p>Click on a store to learn more about it.');
             
         }
 
