@@ -30,62 +30,7 @@ var mapZoom = 10.57;
         $(".modal").fadeToggle();
     });
 
-// --------------------------------------------------------
-// 3. Creating a legend
-// See example tutorial at https://docs.mapbox.com/help/tutorials/choropleth-studio-gl-pt-2/#create-arrays-of-intervals-and-colors
 
-//    var layers = [ // an array of the possible values you want to show in your legend
-//        'Civic Spaces', // Civic Spaces.png
-//        'Community Park', // Community Park.png
-//        'Neighborhood Park', // Neighborhood Park.png
-//        'Cemetery',
-//        'Urban Park',
-//        'Regional Park'
-//    ];
-
-    var colors = [ // an array of the color values for each legend item
-        '#800000',
-        '#800030',
-        '#800060',
-        '#80006c',
-        '#800090',
-        '#80009c'
-    ];
-
-    // for loop to create individual legend items
-//    for (i=0; i<layers.length; i++) {
-//        var layer =layers[i]; // name of the current legend item, from the layers array
-//        var color =colors[i]; // color value of the current legend item, from the colors array 
-//        
-//        var itemHTML = "<div><span class='legend-key'></span><span>" + layer + "</span></div>"; // create the HTML for the legend element to be added
-//
-//        var item = $(itemHTML).appendTo("#legend"); // add the legend item to the legend
-//        var legendKey = $(item).find(".legend-key"); // find the legend key (colored circle) for the current item
-//        legendKey.css("background", color); // change the background color of the legend key
-//    }
-
-
-// --------------------------------------------------------
-// 4. Info window 
-// See example tutorial at https://docs.mapbox.com/help/tutorials/choropleth-studio-gl-pt-2/#add-the-information-window
-
-    map.on('mousemove', function(e) {   // Event listener to do some code when the mouse moves, see https://www.mapbox.com/mapbox-gl-js/api/#events. 
-
-        var parks = map.queryRenderedFeatures(e.point, {    
-            layers: ['cville-parks']    // replace 'cville-parks' with the name of the layer you want to query (from your Mapbox Studio map, the name in the layers panel). For more info on queryRenderedFeatures, see the example at https://www.mapbox.com/mapbox-gl-js/example/queryrenderedfeatures/. Documentation at https://www.mapbox.com/mapbox-gl-js/api/#map#queryrenderedfeatures.
-        });
-              
-        if (parks.length > 0) {   // if statement to make sure the following code is only added to the info window if the mouse moves over a state
-
-            $('#info-window-body').html('<h3><strong>' + parks[0].properties.PARKNAME + '</strong></h3><p>' + parks[0].properties.PARK_TYPE + ' PARK</p><img class="park-image" src="img/' + parks[0].properties.PARKNAME + '.jpg">');
-
-        } else {    // what shows up in the info window if you are NOT hovering over a park
-
-            $('#info-window-body').html('<p>Click on a store to learn more about it.');
-            
-        }
-
-    });
 
 
 // -------------------------------------------------------- 
@@ -138,12 +83,12 @@ var mapZoom = 10.57;
     var layers = [  // an array of the layers you want to include in the layers control (layers to turn off and on)
 
         // [layerMachineName, layerDisplayName]
-        // layerMachineName is the layer name as written in your Mapbox Studio map layers panel
-        // layerDisplayName is the way you want the layer's name to appear in the layers control on the website
+
         ['Point_O', 'Pizza Hut'],                      // layers[0]
         ['Point_D', 'Delivery Destinations'],         // layers[1][1] = 'Parks'
         ['Point_D_Heatmap', 'Destination Heatmap'],     
-        ['Shops', 'Surrounding Shops']        // add additional live data layers here as needed
+        ['Shops', 'Surrounding Shops'],
+        // add additional live data layers here as needed
     ]; 
 
     // functions to perform when map loads
@@ -177,30 +122,6 @@ var mapZoom = 10.57;
         });
     });
 
-// -------------------------------------------------------- 
-// 7. Change a layer's style
-// See example at https://www.mapbox.com/mapbox-gl-js/example/color-switcher/
-//    
-//    var swatches = $("#swatches");
-//
-//    var colors = [  // an array of color options for the bus stop ponts
-//        '#ffd000',
-//        '#f00',
-//    ]; 
-//
-//    var layer = 'cville-bus-stops';
-//
-//    colors.forEach(function(color) {
-//        var swatch = $("<button class='swatch'></button>").appendTo(swatches);
-//
-//        $(swatch).css('background-color', color); 
-//
-//        $(swatch).on('click', function() {
-//            map.setPaintProperty(layer, 'circle-color', color); // 'circle-color' is a property specific to a circle layer. Read more about what values to use for different style properties and different types of layers at https://www.mapbox.com/mapbox-gl-js/style-spec/#layers
-//        });
-//
-//        $(swatches).append(swatch);
-//    });
 
 // -------------------------------------------------------- 
 // 8. Scroll to zoom through sites
@@ -215,7 +136,9 @@ var mapZoom = 10.57;
             bearing: 0,
             center: [114.067240, 22.464007],
             zoom: 12,
-            pitch: 0
+            pitch: 0,
+            layersVis:['Point_D','Circle_O'],
+            
         },
         'chapter02': {
             name: "02_Zoom in",
@@ -224,7 +147,9 @@ var mapZoom = 10.57;
             bearing: 68,
             center: [114.010026, 22.429198],
             zoom: 11.87,
-            pitch: 50
+            pitch: 50,
+            layersVis:['Point_D','Circle_O'],
+
         },
         'chapter03': {
             name: "03???",
@@ -233,10 +158,30 @@ var mapZoom = 10.57;
             bearing: 20,
             center: [ 113.989629, 22.429796],
             zoom: 15,
-            pitch: 50
+            pitch: 50,
+            layersVis:['Point_D','Circle_O'],
+
         },
         'chapter04': {
             name: "04???",
+            description: "Aenean rutrum finibus ex, quis mollis ante eleifend in. Vestibulum faucibus augue tellus, ac auctor tellus maximus sit amet. Nulla quis rutrum felis. Nullam a facilisis mi, in pretium orci. Vestibulum tempus odio et accumsan lacinia. Duis tempus, dolor sit amet tristique tempus, nisl neque tristique lacus, quis viverra est risus id quam. Donec condimentum massa vitae dui consectetur vehicula. Vivamus interdum nisi sed blandit fermentum. Proin a magna et est varius euismod non quis turpis. Cras rhoncus, nulla non faucibus vestibulum, felis nunc finibus nisi, dictum sollicitudin nibh leo non lorem. Donec ut nulla id nunc elementum luctus. Fusce sed justo ac metus pretium auctor ut eget magna. Vestibulum rhoncus nibh sit amet varius tincidunt.",
+            //imagepath: "img/Rivanna River.jpg",
+            bearing: 0,
+            center: [ 113.989629, 22.429796],
+            zoom: 16.13,
+            pitch: 25
+        },
+        'chapter05': {
+            name: "05???",
+            description: "Aenean rutrum finibus ex, quis mollis ante eleifend in. Vestibulum faucibus augue tellus, ac auctor tellus maximus sit amet. Nulla quis rutrum felis. Nullam a facilisis mi, in pretium orci. Vestibulum tempus odio et accumsan lacinia. Duis tempus, dolor sit amet tristique tempus, nisl neque tristique lacus, quis viverra est risus id quam. Donec condimentum massa vitae dui consectetur vehicula. Vivamus interdum nisi sed blandit fermentum. Proin a magna et est varius euismod non quis turpis. Cras rhoncus, nulla non faucibus vestibulum, felis nunc finibus nisi, dictum sollicitudin nibh leo non lorem. Donec ut nulla id nunc elementum luctus. Fusce sed justo ac metus pretium auctor ut eget magna. Vestibulum rhoncus nibh sit amet varius tincidunt.",
+            //imagepath: "img/Rivanna River.jpg",
+            bearing: 0,
+            center: [ 113.989629, 22.429796],
+            zoom: 16.13,
+            pitch: 25
+        },
+        'chapter06': {
+            name: "06???",
             description: "Aenean rutrum finibus ex, quis mollis ante eleifend in. Vestibulum faucibus augue tellus, ac auctor tellus maximus sit amet. Nulla quis rutrum felis. Nullam a facilisis mi, in pretium orci. Vestibulum tempus odio et accumsan lacinia. Duis tempus, dolor sit amet tristique tempus, nisl neque tristique lacus, quis viverra est risus id quam. Donec condimentum massa vitae dui consectetur vehicula. Vivamus interdum nisi sed blandit fermentum. Proin a magna et est varius euismod non quis turpis. Cras rhoncus, nulla non faucibus vestibulum, felis nunc finibus nisi, dictum sollicitudin nibh leo non lorem. Donec ut nulla id nunc elementum luctus. Fusce sed justo ac metus pretium auctor ut eget magna. Vestibulum rhoncus nibh sit amet varius tincidunt.",
             //imagepath: "img/Rivanna River.jpg",
             bearing: 0,
@@ -292,7 +237,7 @@ var mapZoom = 10.57;
         if (chapterName === activeChapterName) return;
 
         map.flyTo(chapters[chapterName]);
-
+        
         activeChapterName = chapterName;
     }
 
@@ -318,14 +263,20 @@ var mapZoom = 10.57;
     $("#reset").click(function() {
         map.setFilter("Point_D", null);
         map.setFilter("Point_D_Heatmap", null);
+        map.setFilter("YuenLangDistrictO1D", null);
+        map.setFilter("YuenLangDistrictOD", null);
+        map.setFilter("Optimized_Sample30KO1D", null);
+        map.setFilter("Optimized_Sample30KOD", null);
+
+        
         document.getElementById('active-hour').innerText = 'All Day';
 
         
-        // Reset all layers to visible
-        for (i=0; i<layers.length; i++) {
-            map.setLayoutProperty(layers[i][0], 'visibility', 'visible'); 
-            $("#" + layers[i][0]).addClass('active');
-        }                   
+//        // Reset all layers to visible
+//        for (i=0; i<layers.length; i++) {
+//            map.setLayoutProperty(layers[i][0], 'visibility', 'visible'); 
+//            $("#" + layers[i][0]).addClass('active');
+//        }                   
 
     });
 
@@ -337,8 +288,10 @@ document.getElementById('slider').addEventListener('input', function(e) {
   // update the map
   map.setFilter('Point_D', ['==', ['get', 'Hrs'], hour]);
   map.setFilter('Point_D_Heatmap', ['==', ['get', 'Hrs'], hour]);
-
-
+  map.setFilter('YuenLangDistrictO1D', ['==', ['get', 'Hrs'], hour]);
+  map.setFilter('YuenLangDistrictOD', ['==', ['get', 'Hrs'], hour]);
+  map.setFilter('Optimized_Sample30KO1D', ['==', ['get', 'Hrs'], hour]);
+  map.setFilter('Optimized_Sample30KOD', ['==', ['get', 'Hrs'], hour]);
 
   // converting 0-23 hour to AMPM format
   var ampm = hour >= 12 ? 'PM' : 'AM';
