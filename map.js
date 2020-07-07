@@ -84,10 +84,18 @@ var mapZoom = 10.57;
 
         // [layerMachineName, layerDisplayName]
 
-        ['Point_O', 'Pizza Hut'],                      // layers[0]
+        ['Point_O', 'PizzaHut'],                      // layers[0]
         ['Point_D', 'Delivery Destinations'],         // layers[1][1] = 'Parks'
         ['Point_D_Heatmap', 'Destination Heatmap'],     
         ['Shops', 'Surrounding Shops'],
+        ['Circle_O', 'Value of Each Store'],
+        ['Bar_O', 'value of Each Store 3D'],
+        ['YuenLangDistrictOD', 'Original Yuen Lang District Delivery '],
+        ['Optimized_Sample30KOD', 'Original Delivery Routes'],
+        ['YuenLangDistrictO1D', 'Optimized Yuen Lang District Delivery '],
+        ['Optimized_Sample30KO1D', 'Optimized Delivery Routes'],
+
+
         // add additional live data layers here as needed
     ]; 
 
@@ -120,7 +128,12 @@ var mapZoom = 10.57;
                     map.setLayoutProperty(clickedLayer, 'visibility', 'visible'); // see https://www.mapbox.com/mapbox-gl-js/api/#map#setlayoutproperty
                 }
         });
+        
     });
+
+
+
+
 
 
 // -------------------------------------------------------- 
@@ -257,6 +270,7 @@ var mapZoom = 10.57;
     }
     
 
+
 // -------------------------------------------------------- 
 // 9. Reset map button
     
@@ -300,4 +314,4 @@ document.getElementById('slider').addEventListener('input', function(e) {
   // update text in the UI
   document.getElementById('active-hour').innerText = hour12 + ampm;
 });
- 
+
