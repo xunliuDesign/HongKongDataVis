@@ -145,184 +145,215 @@ var mapZoom = 11;
 // See example at https://docs.mapbox.com/mapbox-gl-js/example/scroll-fly-to/
     
     // A JavaScript object containing all of the data for each site "chapter" (the sites to zoom to while scrolling)
-//    var chapters = {
-//        'chapter01': {
-//            name: "01: Current Problems",
-//            description: "Current Delivery Locations:<br> This maps shows all currrent delivery locations, while the darker red is the distance to the PizzaHut, radius of each circle represents the value of each delivery.",
-//            //imagepath: "img/Darden Towe.jpg",
-//            bearing: 0,
-//            center: [114.131459, 22.414532],
-//            zoom: 11,
-//            pitch: 0,
-//            
-//        },
-//        'chapter02': {
-//            name: "",
-//            description: "Heatmap of Current Delivery Locations:<br>All delivery locations/per delivery are visaulized as heatmap. As many locations have multiple delivery through the survey period.",
-//            //imagepath: "img/McGuffey Park.jpg",
-//            bearing: 0,
-//            center: [114.131459, 22.414532],
-//            zoom: 11,
-//            pitch: 0,
-//        },
-//         'chapter03': {
-//            name: "",
-//            description: "Current Delivery Locations Changing Through Time:<br> Visualization of current delivery data within 24 hours. You can change the slider to navigate to different time period.",
-//            //imagepath: "img/McGuffey Park.jpg",
-//            bearing: 0,
-//            center: [114.131459, 22.414532],
-//            zoom: 11,
-//            pitch: 0,
-//        },
-//        'chapter04': {
-//            name: "",
-//            description: "Demand From Different PizzaHut Stores:<br> Different Pizzahut Stores has significant uneven demand for delivery. The radius of the circles shows the total value of all delivery from each Pizzahut Stores",
-//            //imagepath: "img/McIntire Park.jpg",
-//            bearing: 17.41,
-//            center: [114.134088, 22.410199],
-//            zoom: 11,
-//            pitch: 60.00,
-//        },
-//        'chapter05': {
-//            name: "",
-//            description: "Zoomed in to Yuen Long District:<br> Lets zoom in to Yuen Long District to visualize the current delivery systems.",
-//            //imagepath: "img/McIntire Park.jpg",
-//            bearing: -8.56,
-//            center: [114.014922, 22.441275],
-//            zoom:12.95,
-//            pitch: 60.00,
-//        },
-//        'chapter06': {
-//            name: "02: An AI Enabled Demand Prediction",
-//            description: " Delivery Network Optimization System:<br> that integrates internal analysis (e.g. food demand, delivery fleet, inventory capacity, customer profiles) and external analysis about uncertainties and trends.",
-//            //imagepath: "img/Rivanna River.jpg",
-//            bearing: 0,
-//            center: [114.131459, 22.414532],
-//            zoom: 11,
-//            pitch: 0,
-//        },
-//        'chapter07': {
-//            name: "",
-//            description: "Demand by Regions:<br> Demand by hours and region Food popularity by region Inventory improvements.",
-//            //imagepath: "img/Rivanna River.jpg",
-//            bearing: 0,
-//            center: [114.131459, 22.414532],
-//            zoom: 11,
-//            pitch: 0,
-//        },
-//        'chapter08': {
-//            name: "",
-//            description: "Delivery Networks:<br>Inefficient dispatch Possibility of shared trips Global optimization.",
-//            //imagepath: "img/Rivanna River.jpg",
-//            bearing: 0,
-//            center: [114.131459, 22.414532],
-//            zoom: 11,
-//            pitch: 0,
-//        },    
-//        'chapter09': {
-//            name: "",
-//            description: "Service Radius:<br> Inefficient location Possibility of new stores Global optimization.",
-//            //imagepath: "img/Rivanna River.jpg",
-//            bearing: -40.54,
-//            center: [114.197381, 22.352413],
-//            zoom:11.21,
-//            pitch: 56.50,
-//        },  
-//        'chapter10': {
-//            name: "03: Solution",
-//            description: "Suggested Store Locations:<br>",
-//            //imagepath: "img/Rivanna River.jpg",
-//            bearing: -40.54,
-//            center: [114.197381, 22.352413],
-//            zoom:11.21,
-//            pitch: 56.50,
-//        },  
-//         'chapter11': {
-//            name: "",
-//            description: "New Service Radius for Suggested Store Locations:<br>",
-//            //imagepath: "img/Rivanna River.jpg",
-//            bearing: 0,
-//            center: [114.131459, 22.414532],
-//            zoom: 11,
-//            pitch: 0,
-//        }, 
-//          'chapter13': {
-//            name: "",
-//            description: "New Delivery Networks for Suggested Store Locations:<br>",
-//            //imagepath: "img/Rivanna River.jpg",
-//            bearing: 0,
-//            center: [114.131459, 22.414532],
-//            zoom: 11,
-//            pitch: 0,
-//        }
-//
-//    };
-//
-//    console.log(chapters['chapter01']['name']);
-//    console.log(Object.keys(chapters)[0]);
-//
-//    // Add the chapters to the #chapters div on the webpage
+    var chapters = {
+        'chapter01': {
+            name: "01 Current Problems",
+            description: "Current Delivery Locations:<br> This maps shows all currrent delivery locations, while the darker red is the distance to the PizzaHut, radius of each circle represents the value of each delivery.",
+            //imagepath: "img/problems.jpg",
+            bearing: 0,
+            center: [114.131459, 22.414532],
+            zoom: 11,
+            pitch: 0,
+            layersVis:['Point_D'], 
+            layersHide:[],
+        },
+        'chapter02': {
+            name: "",
+            description: "Heatmap of Current Delivery Locations:<br>All delivery locations/per delivery are visaulized as heatmap. As many locations have multiple delivery through the survey period.You can change the slider on the left to visualize delivery data within 24 hours",
+            //imagepath: "img/McGuffey Park.jpg",
+            bearing: 0,
+            center: [114.131459, 22.414532],
+            zoom: 11,
+            pitch: 0,
+            layersVis:['Point_D_Heatmap'], 
+            layersHide:[],
+            speed:0.1,
+        },
+
+        'chapter03': {
+            name: "",
+            description: "Demand From Different PizzaHut Stores:<br> Different Pizzahut Stores has significant uneven demand for delivery. The radius of the circles shows the total value of all delivery from each Pizzahut Stores",
+            //imagepath: "img/McIntire Park.jpg",
+            bearing: 17.41,
+            center: [114.134088, 22.410199],
+            zoom: 11,
+            pitch: 60.00,
+            layersVis:['Circle_O','Bar_O'], 
+            layersHide:['Point_D_Heatmap','Point_D'],
+            speed:0.1,
+        },
+        'chapter04': {
+            name: "",
+            description: "Zoomed in to Yuen Long District:<br> Lets zoom in to Yuen Long District to visualize the current delivery systems.",
+            //imagepath: "img/McIntire Park.jpg",
+            bearing: -8.56,
+            center: [114.014922, 22.441275],
+            zoom:12.95,
+            pitch: 60.00,
+            layersVis:['Point_D'], 
+            layersHide:[],
+            speed:0.1,
+        },
+        'chapter05': {
+            name: "02 An AI Enabled Demand Prediction",
+            description: " Delivery Network Optimization System:<br> that integrates internal analysis (e.g. food demand, delivery fleet, inventory capacity, customer profiles) and external analysis about uncertainties and trends.",
+            //imagepath: "img/Rivanna River.jpg",
+            bearing: 0,
+            center: [114.131459, 22.414532],
+            zoom: 11,
+            pitch: 0,
+            layersVis:[], 
+            layersHide:[], 
+            speed:0.1,
+        },
+        'chapter06': {
+            name: "",
+            description: "Demand by Regions:<br> Demand by hours and region Food popularity by region Inventory improvements.",
+            //imagepath: "img/Rivanna River.jpg",
+            bearing: 0,
+            center: [114.131459, 22.414532],
+            zoom: 11,
+            pitch: 0,
+            layersVis:['Grid'], 
+            layersHide:[],
+            speed:0.1,
+        },
+        'chapter07': {
+            name: "",
+            description: "Delivery Networks:<br>Inefficient dispatch Possibility of shared trips Global optimization.",
+            //imagepath: "img/Rivanna River.jpg",
+            bearing: 0,
+            center: [114.131459, 22.414532],
+            zoom: 11,
+            pitch: 0,
+            layersVis:['Optimized_Sample30KOD'], 
+            layersHide:['Point_D_Heatmap','Bar_O','Grid'],
+            speed:0.1,
+        },    
+        'chapter08': {
+            name: "",
+            description: "Service Radius:<br> Inefficient location Possibility of new stores Global optimization.1k Radius / 3k Radius",
+            //imagepath: "img/Rivanna River.jpg",
+            bearing: -40.54,
+            center: [114.197381, 22.352413],
+            zoom:11.21,
+            pitch: 56.50,
+            layersVis:['Buffer_1k','Buffer_3k'], 
+            layersHide:['Optimized_Sample30KOD'],
+            speed:0.1,
+        },  
+        'chapter09': {
+            name: "03 Solutions",
+            description: "Suggested Store Locations:<br>",
+            //imagepath: "img/Rivanna River.jpg",
+            bearing: -40.54,
+            center: [114.197381, 22.352413],
+            zoom:11.21,
+            pitch: 56.50,
+            layersVis:['Newstores'], 
+            layersHide:['Buffer_1k','Buffer_3k','Point_D','Circle_O'],
+            speed:0.1,
+        },  
+         'chapter10': {
+            name: "",
+            description: "New Service Radius for Suggested Store Locations:<br>",
+            //imagepath: "img/Rivanna River.jpg",
+            bearing: 0,
+            center: [114.131459, 22.414532],
+            zoom: 11,
+            pitch: 0,
+            layersVis:['New1tore_1k','Newstore_3k'], 
+            layersHide:[],
+            speed:0.1,
+        }, 
+          'chapter11': {
+            name: "",
+            description: "New Delivery Networks for Suggested Store Locations:<br>",
+            //imagepath: "img/highlights.jpg",
+            bearing: 0,
+            center: [114.131459, 22.414532],
+            zoom: 11,
+            pitch: 0,
+            layersVis:['Optimized_Sample30KO1D'], 
+            layersHide:[],
+            speed:0.1,
+        }
+
+    };
+
+    console.log(chapters['chapter01']['name']);
+    console.log(Object.keys(chapters)[0]);
+
+     //Add the chapters to the #chapters div on the webpage
+    for (var key in chapters) {
+        var newChapter = $("<div class='chapter' id='" + key + "'></div>").appendTo("#chapters");
+        var chapterHTML = $("<h3>" +"<br>"+ chapters[key]['name'] +"<br><br>"+"</h3>" + "<p>" + chapters[key]['description'] + "</p>"+"<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>").appendTo(newChapter);
+    }
+
+
 //    for (var key in chapters) {
 //        var newChapter = $("<div class='chapter' id='" + key + "'></div>").appendTo("#chapters");
-//        var chapterHTML = $("<h3>" +"<br>"+ chapters[key]['name'] +"<br><br>"+"</h3>" + "<p>" + chapters[key]['description'] + "</p>"+"<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>").appendTo(newChapter);
+//        var chapterHTML = $("<h3>" + chapters[key]['name'] + "</h3>"+"<p>" + chapters[key]['description'] + "</p>"+"<img src='" + chapters[key]['imagepath'] + "'>"+"<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>").appendTo(newChapter);
 //    }
-//
-////If include images
-////    for (var key in chapters) {
-////        var newChapter = $("<div class='chapter' id='" + key + "'></div>").appendTo("#chapters");
-////        var chapterHTML = $("<h3>" + chapters[key]['name'] + "</h3><img src='" + chapters[key]['imagepath'] + "'><p>" + chapters[key]['description'] + "</p>").appendTo(newChapter);
-////    }
-//
-//
-//    $("#chapters").scroll(function(e) {
-//
-//        var chapterNames = Object.keys(chapters);
-//
-//        for (var i = 0; i < chapterNames.length; i++) {
-//
-//            var chapterName = chapterNames[i];
-//            var chapterElem = $("#" + chapterName);
-//
-//            if (chapterElem.length) {
-//
-//                if (checkInView($("#chapters"), chapterElem, true)) {
-//                    setActiveChapter(chapterName);
-//                    $("#" + chapterName).addClass('active');
-//
-//                    break;
-//
-//                } else {
-//                    $("#" + chapterName).removeClass('active');
-//                }
-//            }
-//        }
-//    });
-//
-//    var activeChapterName = '';
-//    
-//    function setActiveChapter(chapterName) {
-//        if (chapterName === activeChapterName) return;
-//
-//        map.flyTo(chapters[chapterName]);
-//        
-//        activeChapterName = chapterName;
-//    }
-//
-//    function checkInView(container, elem, partial) {
-//        var contHeight = container.height();
-//        var contTop = container.scrollTop();
-//        var contBottom = contTop + contHeight ;
-//
-//        var elemTop = $(elem).offset().top - container.offset().top;
-//        var elemBottom = elemTop + $(elem).height();
-//
-//
-//        var isTotal = (elemTop >= 0 && elemBottom <=contHeight);
-//        var isPart = ((elemTop < 0 && elemBottom > 0 ) || (elemTop > 0 && elemTop <= container.height())) && partial ;
-//
-//        return  isTotal  || isPart ;
-//    }
-//    
+
+
+    $("#chapters").scroll(function(e) {
+
+        var chapterNames = Object.keys(chapters);
+
+        for (var i = 0; i < chapterNames.length; i++) {
+
+            var chapterName = chapterNames[i];
+            var chapterElem = $("#" + chapterName);
+
+            if (chapterElem.length) {
+
+                if (checkInView($("#chapters"), chapterElem, true)) {
+                    setActiveChapter(chapterName);
+                    $("#" + chapterName).addClass('active');
+
+                    break;
+
+                } else {
+                    $("#" + chapterName).removeClass('active');
+                }
+            }
+        }
+    });
+
+    var activeChapterName = '';
+    
+    function setActiveChapter(chapterName) {
+        if (chapterName === activeChapterName) return;
+        
+        map.flyTo(chapters[chapterName]);
+        
+         // Reset layers to visible
+        for (i=0; i<chapters[chapterName]['layersVis'].length; i++) {
+            map.setLayoutProperty(chapters[chapterName]['layersVis'][i], 'visibility', 'visible'); 
+        }  
+        for (i=0; i<chapters[chapterName]['layersHide'].length; i++) {
+            map.setLayoutProperty(chapters[chapterName]['layersHide'][i], 'visibility', 'none'); 
+        }  
+
+        activeChapterName = chapterName;
+    }
+
+    function checkInView(container, elem, partial) {
+        var contHeight = container.height();
+        var contTop = container.scrollTop();
+        var contBottom = contTop + contHeight ;
+
+        var elemTop = $(elem).offset().top - container.offset().top;
+        var elemBottom = elemTop + $(elem).height();
+
+
+        var isTotal = (elemTop >= 0 && elemBottom <=contHeight);
+        var isPart = ((elemTop < 0 && elemBottom > 0 ) || (elemTop > 0 && elemTop <= container.height())) && partial ;
+
+        return  isTotal  || isPart ;
+    }
+    
 
 
 // -------------------------------------------------------- 
@@ -335,10 +366,6 @@ var mapZoom = 11;
         map.setFilter("YuenLangDistrictOD", null);
         map.setFilter("Optimized_Sample30KO1D", null);
         map.setFilter("Optimized_Sample30KOD", null);
-        map.setCenter(mapCenter);
-        map.setZoom(mapZoom);
-        map.setPitch(0);
-        map.setBearing(0);
 
         
         document.getElementById('active-hour').innerText = 'All Day';
